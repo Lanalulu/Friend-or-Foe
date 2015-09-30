@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Friend or Foe?</title>
+	<link type="text/css" rel="stylesheet" href="css/style.css"/>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+</head>
+<body>
+	<audio loop autoplay>
+		<source src="sounds/drip.mp3" type="audio/mp3">
+	</audio>
+
+<ul>
+	<li><a href="#" onmousedown="bleep.play()" class="pet">Pet</li></a>
+	<li><a href="#" onmousedown="bleep.play()" class="talk">Talk</li></a>
+	<li><a href="#" onmousedown="bleep.play()" class="scream">Scream</li></a>
+</ul>
+
+<div id="container">
+	<div class="ray">
+	<div class="drop"></div>
+	<div class="drop2"></div>
+	<div class="drop3"></div></div>
+	<div id="spotlight">
+	<div class="heart"></div>
+	<div class="stomach mouse"></div>
+	<div class="head mouse"></div>
+	<div class="paw mouse"></div>
+	<div class="paw2 mouse"></div>
+	<div class="foot mouse"></div>
+	<div class="foot2 mouse"></div>
+	<div class="eye mouse"></div>
+	<div class="eye2 mouse"></div>
+	<div class="nose mouse"></div>
+	<div class="mouth mouse"></div>
+	<div class="speaking"></div>
+	<div class="ear mouse"></div>
+	<div class="ear2 mouse"></div>
+	<div class="whisker mouse"></div>
+	<div class="whisker2 mouse"></div>
+	<div class="whisker3 mouse"></div>
+	<div class="whisker4 mouse"></div>
+	<div class="tail mouse"></div>
+	<div class="wrinkle"></div>
+	<div class="wrinkle2"></div>
+	<div class="smile"></div>
+	</div>
+</div>
+
+<div id="petbox"><em>It seems you have garnered the mouse's trust. Hm, heartwarming...</em></div>
+<div id="talkbox"><em>The mouse is trying to converse, but the words are inaudible. Curious...</em></div>
+<div id="screambox"><em>Your scream was frightful, and now the mouse keeps quivering! Oh dear, this can't be good...</em></div>
+
+<script>
+
+var bleep = new Audio ();
+bleep.src = "sounds/pop.mp3";
+   
+$(document).ready(function() {
+
+setTimeout(function () {
+    $('.drop').show();}, 2000);
+
+setTimeout(function () {
+    $('.drop2').show();}, 6000);
+
+setTimeout(function () {
+    $('.drop3').show();}, 10000);
+
+	$(".scream").click(function(){
+	$(".mouse").effect( "shake", {times:4, distance:.5}, 1000);
+	$('.mouth').css({
+        'height': '4px', 'width': '6px'});
+	$('.wrinkle').show();
+	$('.wrinkle2').show();
+	$(".heart").hide();
+	$(".speaking").hide();
+	$("#screambox").delay(800).fadeIn(800).fadeOut(7000);
+	$("#petbox").hide();
+	$("#talkbox").hide();
+
+var myShaking = setInterval(function() {
+	$('.mouse').effect('shake', {times:2, distance:.5}, 1000 );
+}, 3000);
+	$(".pet").click(function(){
+	clearInterval(myShaking);
+});
+	$(".talk").click(function(){
+	clearInterval(myShaking);
+});
+});
+
+$(".pet").click(function(){
+	$(".mouth").hide(1800);
+	$(".smile").delay(200).show(0);
+	$(".wrinkle").delay(2000).hide(0);
+	$(".wrinkle2").delay(2000).hide(0);
+	$(".heart").delay(2000).show(0).fadeOut(12000);
+	$(".speaking").hide(800);
+	$("#petbox").delay(2000).fadeIn(2000).fadeOut(6000);
+	$("#talkbox").hide();
+	$("#screambox").hide();
+	$(".ear").effect( "shake", {times:2, distance:.6}, 800 );
+	$(".tail").delay(1200).effect( "shake", {times:4, distance:.7}, 800 );
+});
+
+$(".talk").click(function(){
+	$(".mouth").hide(2500);
+	$(".speaking").show(100);
+	$(".wrinkle").delay(2000).hide(0);
+	$(".wrinkle2").delay(2000).hide(0);
+	$(".smile").delay(500).hide(0);
+	$("#talkbox").delay(1000).fadeIn(1000).fadeOut(6000);
+	$("#petbox").hide();
+	$("#screambox").hide();
+});
+});
+
+</script>
+
+</body>
+</html>	
